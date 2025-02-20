@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/bash -eu
 
 cd "$(dirname ${0})/.."
 source scripts/helpers.sh
@@ -6,7 +6,6 @@ source scripts/helpers.sh
 pip_required
 
 echo "Creating test requirements...
-It's recommended to run this script from a Unix-like system in Python 3.7 (or higher) environment."
-cd test
-pip install --upgrade pip-tools
-pip-compile --output-file requirements.txt
+To match the CI environment, this script should be run from a Unix-like system in Python 3.10."
+
+uv pip compile test/requirements.in -o test/requirements.txt
